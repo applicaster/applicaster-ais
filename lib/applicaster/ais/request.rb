@@ -1,3 +1,4 @@
+require "faraday"
 module Applicaster
   module Ais
     class Request
