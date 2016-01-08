@@ -1,8 +1,6 @@
 # Applicaster::Ais
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/applicaster/ais`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This Gem is Applicaster Authentication API wrapper
 
 ## Installation
 
@@ -22,7 +20,82 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### Configuring
+Configure the host, port and Access-Token (currently access token are only available per session)
+```ruby
+Applicaster::Ais.configure do |config|
+  config.host = Settings.ais.api_url
+  config.port = 443
+  config.access_token = ENV["ACCESS_TOKEN"]
+end
+```
+
+If using `Rails` app this code could be inside initializers.
+
+## API Endpoints
+## API Endpoints
+
+* [Backend](#backend)
+  * [Bucket](#bucket)
+  	* [Buckets](#buckets)
+  	* [Create](#create)
+
+### [Backend](#backend)
+#### [Bucket](#bucket)
+##### [Buckets](#buckets)
+
+Endpoint: `/backend/buckets`
+Params: `account_id`, `access_token`
+
+List of all the buckets for specific account.
+```ruby
+res = Applicaster::Ais::Bucket.buckets(:account_id, access_token: :access_token)
+```
+
+Example response
+
+Empty body response with a `200 OK` response code
+```javascript
+{
+	data: "[
+        {
+            "id":"547de87bdf74b0cd7300d7fc",
+            "name":"Test1",
+        },
+        {
+            "id":"547de87bds2347300d7fc",
+            "name":"Test2",
+        }
+        ]",
+    meta_data:{
+        status: 200
+    }
+}
+```
+##### [Create](#create)
+
+Endpoint: `/backend/buckets`
+Params: `account_id`, `access_token`, `name`, `applicaster_app`, `crossmates_reporting_enabled`, `feed_reporting_enabled`,   `zuora_billing_enabled`, `zuora_account_id`,       `zuora_subscription_id`, `zuora_active_users_charge_id`,        `zuora_gigabytes_charge_id`
+
+Create a new bucket for a specific account.
+```ruby
+res = Applicaster::Ais::Bucket.create(:account_id, params)
+```
+
+Example response
+
+```javascript
+{
+	data: {
+    	"id":"547de87bdf74b0cd7300d7fc",
+        "name":"Test1",
+         },
+    meta_data:{
+   	    status: 200
+        }
+}
+```
+
 
 ## Development
 
