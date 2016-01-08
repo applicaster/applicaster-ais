@@ -95,10 +95,9 @@ PLATFORMS
 
 DEPENDENCIES
   applicaster-ais!
-  bundler (~> 1.10)
   dotenv (~> 2.0.1)
   pry
-  rake (~> 10.0)
+  rake
   rspec
   simplecov
 
