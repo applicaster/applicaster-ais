@@ -3,11 +3,11 @@ module Applicaster
     class Client
 
       def buckets(params = {})
-        get("backend/buckets", params)
+        get("backend/buckets.json", params)
       end
 
       def create_bucket(params = {})
-        post("backend/buckets", params)
+        post("backend/buckets.json", params)
       end
 
       private
