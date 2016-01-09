@@ -24,6 +24,7 @@ module Applicaster
 
       def connection
         @connection ||= Faraday.new(url: config.host) do |connection|
+          faraday.request :json
           connection.adapter Faraday.default_adapter
         end
       end

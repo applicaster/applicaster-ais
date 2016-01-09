@@ -12,7 +12,7 @@ describe Applicaster::Ais::Client do
     it "does a Get request for 'backend/buckets' endpoint" do
       allow(Applicaster::Ais::Request).
         to receive(:get).
-        with("backend/buckets", params: "param").
+        with("backend/buckets.json", params: "param").
         and_return(api_response)
 
       expect(subject.buckets(params: "param")).to eq response
@@ -23,7 +23,7 @@ describe Applicaster::Ais::Client do
     it "does a POST for 'backend/buckets' endpoint" do
       allow(Applicaster::Ais::Request).
         to receive(:post).
-        with("backend/buckets", param: "param").
+        with("backend/buckets.json", param: "param").
         and_return(api_response)
 
       expect(subject.create_bucket(param: "param")).to eq response
