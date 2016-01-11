@@ -1,12 +1,12 @@
 module Applicaster
   module Ais
     module Bucket
-      def self.buckets(account_id, params = {})
+      def self.list(account_id, params = {})
         response = client.buckets(account_id_param(account_id).merge(params))
         response_parser.build_result(response)
       end
 
-      def self.create(account_id, params = {})
+      def self.post(account_id, params = {})
         response = client.create_bucket(account_id_param(account_id).merge(params))
         response_parser.build_result(response)
       end

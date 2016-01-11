@@ -17,17 +17,17 @@ describe Applicaster::Ais::Bucket do
       .and_return(response)
   end
 
-  describe ".buckets" do
+  describe ".list" do
     it "returns a parsed result for buckets request" do
       allow(client).to receive(:buckets).with(params).and_return(client_result)
-      expect(subject.buckets("123", params)).to eq response
+      expect(subject.list("123", params)).to eq response
     end
   end
 
-  describe ".create" do
+  describe ".post" do
     it "returns a parsed result for create bucket request" do
       allow(client).to receive(:create_bucket).with(params).and_return(client_result)
-      expect(subject.create("123", params)).to eq response
+      expect(subject.post("123", params)).to eq response
     end
   end
 end
