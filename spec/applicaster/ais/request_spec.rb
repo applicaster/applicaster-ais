@@ -4,6 +4,7 @@ describe Applicaster::Ais::Request do
   let(:connection)    { double("connection") }
   let(:get_response)  { double("get_response") }
   let(:post_response) { double("post_response") }
+  let(:put_response)  { double("put_response") }
 
   before do
     allow(Faraday).to receive(:new).and_return(connection)
@@ -27,6 +28,15 @@ describe Applicaster::Ais::Request do
     end
   end
 
+  describe ".put" do
+    it "creates an instance and sends #put to it" do
+      instance = double("instance")
+      allow(Applicaster::Ais::Request).to receive(:new).and_return(instance)
+      allow(instance).to receive(:put).with('/fake_path', {}).and_return(put_response)
+      expect(Applicaster::Ais::Request.put('/fake_path', {})).to eq put_response
+    end
+  end
+
   describe "#get" do
     it "returns 'get' response" do
       allow(connection)
@@ -46,6 +56,17 @@ describe Applicaster::Ais::Request do
         and_return(post_response)
 
       expect(Applicaster::Ais::Request.new.post("/fake_path", param: "param")).to eq post_response
+    end
+  end
+
+  describe "#put" do
+    it "returns 'put' response" do
+      allow(connection).
+        to receive(:put).
+        with("/fake_path", { access_token: "test-token", param: "param" }).
+        and_return(put_response)
+
+      expect(Applicaster::Ais::Request.new.put("/fake_path", param: "param")).to eq put_response
     end
   end
 end

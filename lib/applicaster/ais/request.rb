@@ -12,12 +12,20 @@ module Applicaster
         new.post(path, params)
       end
 
+      def self.put(path, params)
+        new.put(path,params)
+      end
+
       def get(path, params = {})
         connection.get path, complete_params(params)
       end
 
       def post(path, params = {})
         connection.post path, complete_params(params)
+      end
+
+      def put(path, params = {})
+        connection.put path, complete_params(params)
       end
 
       private
