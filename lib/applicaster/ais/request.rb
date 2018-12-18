@@ -1,4 +1,6 @@
 require "faraday"
+require "faraday_middleware"
+
 module Applicaster
   module Ais
     class Request

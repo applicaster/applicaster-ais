@@ -26,6 +26,10 @@ module Applicaster
         put("/backend/accounts/#{account_id}/buckets/#{bucket_id}/apps/#{id}.json", params)
       end
 
+      def usage_reports(bucket_id, date)
+        get("/backend/usage_reports.json?bucket_ids[]=#{bucket_id}&date=#{date}")
+      end
+
       private
 
       def get(path, params = {})
